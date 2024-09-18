@@ -41,6 +41,9 @@ module.exports = {
       backgroundImage: {
         'hero-pattern':
           "url('https://i.ibb.co/MkvLDfb/Rectangle-4389.png')",
+        'radial-gradient': 'radial-gradient(var(--tw-gradient-stops))',
+        'conic-gradient':
+          'conic-gradient(from 225deg, #FFC876, #79FFF7, #9F53FF, #FF98E2, #FFC876)',
       },
     },
   },
