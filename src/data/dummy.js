@@ -21,7 +21,7 @@ import product4 from './product4.jpg';
 import product5 from './product5.jpg';
 import product6 from './product6.jpg';
 import product7 from './product7.jpg';
-import product8 from './product8.jpg';
+// import product8 from './product8.jpg';
 
 export const gridOrderImage = (props) => (
   <div>
@@ -481,20 +481,36 @@ export const links = [
   },
 
   {
-    title: 'Pages',
+    title: 'Departments',
     links: [
       {
-        name: 'orders',
+        name: 'HR',
         icon: <AiOutlineShoppingCart />,
       },
       {
-        name: 'employees',
+        name:'IT',
         icon: <IoMdContacts />,
       },
       {
-        name: 'customers',
+        name: 'Sales',
         icon: <RiContactsLine />,
       },
+      {
+        name: 'Marketing',
+        icon: <AiOutlineShoppingCart />,
+      },
+      {
+        name: 'Finance',
+        icon: <IoMdContacts />,
+      },
+      {
+        name: 'Legal',
+        icon: <RiContactsLine />,
+      },
+      {
+        name:'Operations',
+        icon: <RiContactsLine />,
+      }
     ],
   },
   {
