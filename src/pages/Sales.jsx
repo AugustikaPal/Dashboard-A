@@ -1,31 +1,39 @@
 import React from 'react';
-import { GridComponent, ColumnsDirective, ColumnDirective, Resize, Sort, ContextMenu, Filter, Page, ExcelExport, PdfExport, Edit, Inject } from '@syncfusion/ej2-react-grids';
-
-import { ordersData, contextMenuItems, ordersGrid } from '../data/dummy';
-import { Header } from '../components';
+import { PowerBIEmbed } from 'powerbi-client-react';
+import { models } from 'powerbi-client';
 
 const Sales = () => {
-  const editing = { allowDeleting: true, allowEditing: true };
   return (
-    <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-      <Header category="Page" title="Orders" />
-      <GridComponent
-        id="gridcomp"
-        dataSource={ordersData}
-        allowPaging
-        allowSorting
-        allowExcelExport
-        allowPdfExport
-        contextMenuItems={contextMenuItems}
-        editSettings={editing}
-      >
-        <ColumnsDirective>
-          {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-          {ordersGrid.map((item, index) => <ColumnDirective key={index} {...item} />)}
-        </ColumnsDirective>
-        <Inject services={[Resize, Sort, ContextMenu, Filter, Page, ExcelExport, Edit, PdfExport]} />
-      </GridComponent>
-    </div>
+    <PowerBIEmbed
+      embedConfig={{
+        type: 'report',
+        id: "036da609-b813-4823-95db-e538ee41436d", // Your actual report ID
+        embedUrl: "https://app.powerbi.com/view?r=eyJrIjoiNzY4NDExMjktZjkxNS00MWMyLTlmMjYtY2M0NzA2NWY1NjExIiwidCI6ImE0NmQyMzZmLTVjNWEtNDE2NC04MzJmLTIyMmRhODFmMWI4MSJ9", // Your embed URL
+        accessToken: 'YOUR_ACCESS_TOKEN', // Your valid access token
+        tokenType: models.TokenType.Embed,
+        settings: {
+          panes: {
+            filters: {
+              expanded: false,
+              visible: false,
+            },
+          },
+          background: models.BackgroundType.Transparent,
+        },
+      }}
+      eventHandlers={new Map([
+        ['loaded', function () { console.log('Report loaded'); }],
+        ['rendered', function () { console.log('Report rendered'); }],
+        ['error', function (event) { console.log(event.detail); }],
+        ['visualClicked', () => console.log('Visual clicked')],
+        ['pageChanged', (event) => console.log(event)],
+      ])}
+      cssClassName={"reportClass"}
+      getEmbeddedComponent={(embeddedReport) => {
+        window.report = embeddedReport;
+      }}
+    />
   );
 };
+
 export default Sales;
